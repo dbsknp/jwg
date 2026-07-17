@@ -362,13 +362,48 @@
             margin-top: 8px;
             display: none;
             background: #fde8e8;
-            padding: 10px;
-            border-radius: 8px;
-            border-left: 4px solid #dc3545;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #dc3545;
         }
 
         .error-msg.show {
             display: block;
+        }
+
+        .error-msg .error-title {
+            font-weight: 700;
+            font-size: 15px;
+            color: #b71c1c;
+        }
+
+        .error-msg .error-details {
+            margin-top: 5px;
+            color: #555;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .error-msg .contact-link {
+            display: inline-block;
+            margin-top: 8px;
+            background: #dc3545;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .error-msg .contact-link:hover {
+            background: #b71c1c;
+            transform: scale(1.05);
+        }
+
+        .error-msg .contact-link i {
+            margin-right: 6px;
         }
 
         .success-msg {
@@ -472,7 +507,7 @@
             <div class="college-name">DBS PG College <span>Govind Nagar</span></div>
             <div class="college-location">📍 Kanpur, Uttar Pradesh</div>
             <div class="college-divider"></div>
-             <div class="principal-name">📋 Secretary: <strong>Meghana Swaroop</strong></div>
+            <div class="principal-name">👨‍🏫 Secretary: <strong>Meghana Swaroop</strong></div>
             <div class="principal-name">👨‍🏫 Principal: <strong>Prof. Anil Kumar Mishra</strong></div>
             <div class="development-info">
                 💻 Developed by: <strong>Dr. Ashish Kumar Shukla</strong> 
@@ -672,13 +707,19 @@
             resultBox.classList.remove('show');
 
             if (!registrationId || !mobileNumber) {
-                errorMsg.textContent = '⚠️ Registration ID and Mobile Number are required!';
+                errorMsg.innerHTML = `
+                    <div class="error-title">⚠️ Missing Information</div>
+                    <div class="error-details">Registration ID and Mobile Number are required fields. Please fill in both fields to proceed.</div>
+                `;
                 errorMsg.classList.add('show');
                 return;
             }
 
             if (!/^\d{10}$/.test(mobileNumber)) {
-                errorMsg.textContent = '⚠️ Please enter a valid 10-digit mobile number!';
+                errorMsg.innerHTML = `
+                    <div class="error-title">⚠️ Invalid Mobile Number</div>
+                    <div class="error-details">Please enter a valid 10-digit mobile number. The number you entered contains ${mobileNumber.length} digits.</div>
+                `;
                 errorMsg.classList.add('show');
                 return;
             }
@@ -686,13 +727,29 @@
             const student = STUDENT_DB[registrationId];
             
             if (!student) {
-                errorMsg.textContent = '❌ Student not found! Please check the Registration ID.';
+                errorMsg.innerHTML = `
+                    <div class="error-title">❌ Student Not Found</div>
+                    <div class="error-details">No student record exists with Registration ID: <strong>${registrationId}</strong>. Please check the ID and try again.</div>
+                `;
                 errorMsg.classList.add('show');
                 return;
             }
 
+            // =====================================================
+            // 🔑 UPDATED: Mobile Number Mismatch Error with Contact
+            // =====================================================
             if (student.contact !== mobileNumber) {
-                errorMsg.textContent = '❌ Mobile number does not match our records! Please check and try again.';
+                errorMsg.innerHTML = `
+                    <div class="error-title">❌ Mobile Number Mismatch</div>
+                    <div class="error-details">
+                        The mobile number <strong>${mobileNumber}</strong> does not match our records for Registration ID: <strong>${registrationId}</strong>.
+                        <br><br>
+                        <strong>For assistance, please contact:</strong><br>
+                        Lt. (Dr.) Ajay Kumar<br>
+                        <span style="font-size: 12px; color: #888;">Academic Coordinator</span>
+                    </div>
+                    <a href="tel:+919005176886" class="contact-link">📞 Call Now: +91 9005176886</a>
+                `;
                 errorMsg.classList.add('show');
                 return;
             }
