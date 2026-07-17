@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student WhatsApp Group Joining System - DBS PG College</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        /* ===== HEADER SECTION - PROFESSIONAL COLLEGE STYLE ===== */
+        .college-header {
+            text-align: center;
+            border-bottom: 3px solid #302b63;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .college-header .college-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0f0c29;
+            letter-spacing: 1px;
+        }
+
+        .college-header .college-name span {
+            color: #302b63;
+        }
+
+        .college-header .college-location {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .college-header .college-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #302b63, #0f0c29);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .college-header .principal-name {
+            font-size: 15px;
+            color: #444;
+            font-weight: 600;
+        }
+
+        .college-header .principal-name strong {
+            color: #0f0c29;
+        }
+
+        .college-header .development-info {
+            margin-top: 8px;
+            font-size: 13px;
+            color: #555;
+            background: #f0f0f5;
+            padding: 8px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .college-header .development-info strong {
+            color: #302b63;
+        }
+
+        .college-header .secretary-info {
+            margin-top: 6px;
+            font-size: 14px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .college-header .secretary-info strong {
+            color: #0f0c29;
+        }
+
+        .college-header .header-icon {
+            font-size: 32px;
+            margin-bottom: 5px;
+        }
+
+        /* ===== MAIN TITLE ===== */
+        .main-title {
+            text-align: center;
+            color: #0f0c29;
+            margin-bottom: 5px;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #dc3545;
+            margin-left: 3px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #f8f9fa;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #302b63;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(48, 43, 99, 0.1);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #302b63 0%, #0f0c29 100%);
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(48, 43, 99, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-box {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #302b63;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .student-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .student-card h3 {
+            color: #302b63;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .student-card .detail-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .student-card .detail-row strong {
+            color: #555;
+        }
+
+        .student-card .detail-row span {
+            color: #0f0c29;
+            font-weight: 500;
+        }
+
+        .course-badge {
+            display: inline-block;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        .course-ug {
+            background: #e3f2fd;
+            color: #0d47a1;
+        }
+
+        .course-pg {
+            background: #fce4ec;
+            color: #b71c1c;
+        }
+
+        .whatsapp-section {
+            margin-top: 20px;
+        }
+
+        .whatsapp-section h4 {
+            color: #25D366;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+        }
+
+        .whatsapp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .whatsapp-item {
+            background: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border-left: 4px solid #25D366;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        .whatsapp-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.1);
+        }
+
+        .whatsapp-item .group-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .whatsapp-item .group-name {
+            font-weight: 600;
+            color: #0f0c29;
+            font-size: 14px;
+        }
+
+        .whatsapp-item .group-type {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .whatsapp-item a {
+            color: #25D366;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 5px 15px;
+            border: 2px solid #25D366;
+            border-radius: 20px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .whatsapp-item a:hover {
+            background: #25D366;
+            color: white;
+        }
+
+        .whatsapp-item.no-link {
+            border-left-color: #ccc;
+            opacity: 0.7;
+        }
+
+        .whatsapp-item.no-link .group-name {
+            color: #999;
+        }
+
+        .no-link-badge {
+            color: #999;
+            font-size: 12px;
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 15px;
+        }
+
+        .json-box {
+            margin-top: 20px;
+            background: #0f0c29;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .json-box pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+        }
+
+        .error-msg {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+            background: #fde8e8;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        .success-msg {
+            color: #28a745;
+            font-size: 14px;
+            margin-top: 8px;
+            display: none;
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .success-msg.show {
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .loading .spinner {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #302b63;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .student-found-msg {
+            color: #28a745;
+            font-size: 14px;
+            padding: 8px 12px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .student-found-msg.show {
+            display: block;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 2px solid #e0e0e0;
+            font-size: 12px;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+
+            .whatsapp-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .student-card .detail-row {
+                grid-template-columns: 1fr;
+            }
+
+            .college-header .college-name {
+                font-size: 20px;
+            }
+
+            .college-header .development-info {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+
+            .main-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ===== PROFESSIONAL COLLEGE HEADER ===== -->
+        <div class="college-header">
+            <div class="header-icon">🏛️</div>
+            <div class="college-name">DBS PG College <span>Govind Nagar</span></div>
+            <div class="college-location">📍 Kanpur, Uttar Pradesh</div>
+            <div class="college-divider"></div>
+            <div class="principal-name">👨‍🏫 Principal: <strong>Prof. Anil Kumar Mishra</strong></div>
+            <div class="secretary-info">📋 Secretary: <strong>Meghana Swaroop</strong></div>
+            <div class="development-info">
+                💻 Developed by: <strong>Dr. Ashish Kumar Shukla</strong> 
+                <span style="color: #888; margin: 0 5px;">|</span> 
+                Assistant Professor, DBS PG College, Kanpur
+            </div>
+        </div>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <h1 class="main-title">🎓 Student WhatsApp Group Joining System</h1>
+        <p class="subtitle">B.A. | B.Sc. | M.A. | M.Sc. — Find your WhatsApp Groups</p>
+        
+        <div id="loadingMsg" class="loading">
+            <div class="spinner"></div>
+            <p>Loading student data...</p>
+        </div>
+        
+        <form id="studentForm" style="display: none;">
+            <div class="row">
+                <div class="form-group">
+                    <label>Registration ID <span class="required">*</span></label>
+                    <input type="text" id="registrationId" placeholder="e.g., 261100028" required>
+                    <div id="studentFoundMsg" class="student-found-msg"></div>
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number <span class="required">*</span></label>
+                    <input type="tel" id="mobileNumber" placeholder="Enter 10-digit number" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">🔍 Verify & Get Details</button>
+            
+            <div id="errorMsg" class="error-msg"></div>
+            <div id="successMsg" class="success-msg"></div>
+        </form>
+
+        <div id="resultBox" class="result-box">
+            <div id="studentCard" class="student-card"></div>
+            
+            <div class="whatsapp-section">
+                <h4>💬 WhatsApp Groups for this Student</h4>
+                <div id="whatsappLinks" class="whatsapp-grid"></div>
+            </div>
+
+            <div class="json-box">
+                <strong style="color: #f8f8f2;">📄 Generated JSON Data</strong>
+                <pre id="jsonOutput"></pre>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer">
+            &copy; 2026 DBS PG College, Govind Nagar, Kanpur | All Rights Reserved
+        </div>
+    </div>
+
+    <script>
+        // =====================================================
+        // 📥 LOAD JSON DATA FROM FILES
+        // =====================================================
+        let STUDENT_DB = {};
+        let WHATSAPP_LINKS = {};
+
+        async function loadJSONData() {
+            try {
+                // Load students.json
+                const studentsResponse = await fetch('students.json');
+                if (!studentsResponse.ok) {
+                    throw new Error('students.json file not found!');
+                }
+                const studentsData = await studentsResponse.json();
+                
+                // Convert array to object with registrationId as key
+                if (studentsData.students && Array.isArray(studentsData.students)) {
+                    studentsData.students.forEach(student => {
+                        STUDENT_DB[student.registrationId] = student;
+                    });
+                }
+
+                // Load whatsapp-groups.json
+                const groupsResponse = await fetch('whatsapp-groups.json');
+                if (!groupsResponse.ok) {
+                    throw new Error('whatsapp-groups.json file not found!');
+                }
+                WHATSAPP_LINKS = await groupsResponse.json();
+
+                // Hide loading, show form
+                document.getElementById('loadingMsg').style.display = 'none';
+                document.getElementById('studentForm').style.display = 'block';
+                
+                console.log('✅ Data loaded successfully!');
+                console.log(`📚 ${Object.keys(STUDENT_DB).length} students loaded`);
+                
+            } catch (error) {
+                document.getElementById('loadingMsg').innerHTML = `
+                    <p style="color: #dc3545;">❌ Error loading data: ${error.message}</p>
+                    <p style="font-size: 12px; color: #888; margin-top: 10px;">
+                        Make sure students.json and whatsapp-groups.json files are in the same folder.
+                    </p>
+                `;
+            }
+        }
+
+        // Load data on page load
+        loadJSONData();
+
+        // =====================================================
+        // 🔍 LOGIC - Get WhatsApp Links for Student
+        // =====================================================
+        function getWhatsAppGroups(student) {
+            const groups = [];
+            const course = student.course;
+            const major1 = student.major1;
+            const major2 = student.major2;
+
+            const courseGroups = WHATSAPP_LINKS.whatsappGroups ? WHATSAPP_LINKS.whatsappGroups[course] : null;
+            
+            if (!courseGroups) {
+                return groups;
+            }
+
+            if (major1) {
+                const link = courseGroups[major1] || '';
+                groups.push({
+                    type: 'Major Subject',
+                    subject: major1,
+                    course: course,
+                    link: link,
+                    hasLink: link !== ''
+                });
+            }
+
+            if ((course === 'B.A.' || course === 'B.Sc.') && major2 && major2.trim() !== '') {
+                const link = courseGroups[major2] || '';
+                groups.push({
+                    type: 'Second Major',
+                    subject: major2,
+                    course: course,
+                    link: link,
+                    hasLink: link !== ''
+                });
+            }
+
+            return groups;
+        }
+
+        // =====================================================
+        // 🔍 CHECK STUDENT ON REGISTRATION ID BLUR
+        // =====================================================
+        document.getElementById('registrationId').addEventListener('blur', function() {
+            const registrationId = this.value.trim();
+            const foundMsg = document.getElementById('studentFoundMsg');
+            const errorMsg = document.getElementById('errorMsg');
+            
+            foundMsg.classList.remove('show');
+            errorMsg.classList.remove('show');
+            
+            if (registrationId && STUDENT_DB[registrationId]) {
+                const student = STUDENT_DB[registrationId];
+                foundMsg.textContent = `✅ Student found: ${student.studentName} (${student.course})`;
+                foundMsg.style.color = '#28a745';
+                foundMsg.style.background = '#e8f5e9';
+                foundMsg.style.borderLeftColor = '#28a745';
+                foundMsg.classList.add('show');
+            } else if (registrationId) {
+                foundMsg.textContent = '❌ Student not found with this Registration ID!';
+                foundMsg.style.color = '#dc3545';
+                foundMsg.style.background = '#fde8e8';
+                foundMsg.style.borderLeftColor = '#dc3545';
+                foundMsg.classList.add('show');
+            }
+        });
+
+        document.getElementById('registrationId').addEventListener('input', function() {
+            const foundMsg = document.getElementById('studentFoundMsg');
+            foundMsg.classList.remove('show');
+            foundMsg.style.color = '#28a745';
+            foundMsg.style.background = '#e8f5e9';
+            foundMsg.style.borderLeftColor = '#28a745';
+        });
+
+        // =====================================================
+        // 📝 FORM SUBMISSION HANDLER
+        // =====================================================
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const registrationId = document.getElementById('registrationId').value.trim();
+            const mobileNumber = document.getElementById('mobileNumber').value.trim();
+            
+            const errorMsg = document.getElementById('errorMsg');
+            const successMsg = document.getElementById('successMsg');
+            const resultBox = document.getElementById('resultBox');
+
+            errorMsg.classList.remove('show');
+            successMsg.classList.remove('show');
+            resultBox.classList.remove('show');
+
+            if (!registrationId || !mobileNumber) {
+                errorMsg.textContent = '⚠️ Registration ID and Mobile Number are required!';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            if (!/^\d{10}$/.test(mobileNumber)) {
+                errorMsg.textContent = '⚠️ Please enter a valid 10-digit mobile number!';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            const student = STUDENT_DB[registrationId];
+            
+            if (!student) {
+                errorMsg.textContent = '❌ Student not found! Please check the Registration ID.';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            if (student.contact !== mobileNumber) {
+                errorMsg.textContent = '❌ Mobile number does not match our records! Please check and try again.';
+                errorMsg.classList.add('show');
+                return;
+            }
+
+            successMsg.textContent = '✅ Student verified successfully! Displaying details...';
+            successMsg.classList.add('show');
+
+            const groups = getWhatsAppGroups(student);
+
+            const jsonData = {
+                student: {
+                    registrationId: registrationId,
+                    mobileNumber: mobileNumber,
+                    studentName: student.studentName,
+                    fatherName: student.fatherName,
+                    course: student.course,
+                    major1: student.major1,
+                    major2: student.major2 || '',
+                    date: student.date
+                },
+                whatsappGroups: groups.map(g => ({
+                    type: g.type,
+                    subject: g.subject,
+                    course: g.course,
+                    link: g.link
+                })),
+                timestamp: new Date().toISOString()
+            };
+
+            displayStudentDetails(student, registrationId, mobileNumber);
+            displayWhatsAppLinks(groups);
+            document.getElementById('jsonOutput').textContent = JSON.stringify(jsonData, null, 2);
+            
+            resultBox.classList.add('show');
+            resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+
+        // =====================================================
+        // 🖥️ DISPLAY FUNCTIONS
+        // =====================================================
+        function displayStudentDetails(student, registrationId, mobileNumber) {
+            const card = document.getElementById('studentCard');
+            
+            const isUG = student.course === 'B.A.' || student.course === 'B.Sc.';
+            const courseBadge = isUG ? 
+                '<span class="course-badge course-ug">UG</span>' : 
+                '<span class="course-badge course-pg">PG</span>';
+
+            const major2Display = (isUG && student.major2 && student.major2.trim() !== '') 
+                ? student.major2 
+                : 'None';
+
+            card.innerHTML = `
+                <h3>
+                    👤 Student Details 
+                    ${courseBadge}
+                </h3>
+                <div class="detail-row">
+                    <strong>Registration ID:</strong>
+                    <span>${registrationId}</span>
+                </div>
+                <div class="detail-row">
+                    <strong>Mobile Number:</strong>
+                    <span>${mobileNumber}</span>
+                </div>
+                <div class="detail-row">
+                    <strong>Student Name:</strong>
+                    <span>${student.studentName}</span>
+                </div>
+                <div class="detail-row">
+                    <strong>Father's Name:</strong>
+                    <span>${student.fatherName}</span>
+                </div>
+                <div class="detail-row">
+                    <strong>Course:</strong>
+                    <span>${student.course}</span>
+                </div>
+                <div class="detail-row">
+                    <strong>Major 1:</strong>
+                    <span>${student.major1}</span>
+                </div>
+                <div class="detail-row">
+                    <strong>Major 2:</strong>
+                    <span>${major2Display}</span>
+                </div>
+                <div class="detail-row">
+                    <strong>Registration Date:</strong>
+                    <span>${student.date}</span>
+                </div>
+            `;
+        }
+
+        function displayWhatsAppLinks(groups) {
+            const container = document.getElementById('whatsappLinks');
+            
+            if (groups.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; color: #888; padding: 20px;">
+                        <p>No WhatsApp groups available for this student.</p>
+                        <p style="font-size: 12px; margin-top: 5px;">Groups will be added soon.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = groups.map(group => {
+                if (group.hasLink && group.link) {
+                    return `
+                        <div class="whatsapp-item">
+                            <div class="group-info">
+                                <span class="group-name">${group.subject}</span>
+                                <span class="group-type">${group.type} • ${group.course}</span>
+                            </div>
+                            <a href="${group.link}" target="_blank">Join →</a>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="whatsapp-item no-link">
+                            <div class="group-info">
+                                <span class="group-name">${group.subject}</span>
+                                <span class="group-type">${group.type} • ${group.course}</span>
+                            </div>
+                            <span class="no-link-badge">🔜 Coming Soon</span>
+                        </div>
+                    `;
+                }
+            }).join('');
+        }
+    </script>
+</body>
+</html>
