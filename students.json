@@ -414,8 +414,8 @@
       "email": "shuklashiv796@gmail.com",
       "contact": "9569711701",
       "course": "B.A.",
-      "major1": "Geography",
-      "major2": "Political Sciences",
+      "major1": "English",
+      "major2": "Geography",
       "date": "2026-05-29"
     },
     {
@@ -598,7 +598,7 @@
       "registrationId": "261100117",
       "studentName": "Vishal Verma",
       "fatherName": "Rajkumar Verma",
-      "email": "vermaavishal988971@gmail.com",
+      "email": "vermavishal988971@gmail.com",
       "contact": "8840605256",
       "course": "B.A.",
       "major1": "Hindi",
@@ -864,9 +864,9 @@
       "fatherName": "Sushil Kumar Savita",
       "email": "JANKISAVITA95@GMAIL.COM",
       "contact": "9511026051",
-      "course": "M.A.",
+      "course": "B.A.",
       "major1": "Hindi",
-      "major2": "",
+      "major2": "Sanskrit",
       "date": "2026-06-15"
     },
     {
@@ -2476,6 +2476,72 @@
       "date": "2026-07-16"
     },
     {
+      "registrationId": "261100353",
+      "studentName": "Sakshi Sonkar",
+      "fatherName": "Vinod Kumar",
+      "email": "sakshisonkar133@gmail.com",
+      "contact": "8115146004",
+      "course": "B.A.",
+      "major1": "Hindi",
+      "major2": "English",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "261100258",
+      "studentName": "Rudransh Dixit",
+      "fatherName": "Akhilesh Dixit",
+      "email": "bs2651100@gmail.com",
+      "contact": "9026837001",
+      "course": "B.A.",
+      "major1": "Political Sciences",
+      "major2": "Sociology",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "261100227",
+      "studentName": "Richa Devi",
+      "fatherName": "Chhote Lal",
+      "email": "royricha693@gmail.com",
+      "contact": "9569648763",
+      "course": "B.A.",
+      "major1": "Education",
+      "major2": "Sociology",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "261100356",
+      "studentName": "Aditi",
+      "fatherName": "Pratap Dubey",
+      "email": "pratapdubey33@gmail.com",
+      "contact": "9120800348",
+      "course": "B.A.",
+      "major1": "Hindi",
+      "major2": "English",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "261100192",
+      "studentName": "Mahi Kushwaha",
+      "fatherName": "Lavlesh",
+      "email": "mahikushwaha4567@gmail.com",
+      "contact": "9889410436",
+      "course": "B.A.",
+      "major1": "History",
+      "major2": "Political Sciences",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "261100357",
+      "studentName": "Yogita Singh",
+      "fatherName": "Manoj Singh",
+      "email": "yogitasingh222444@gmail.com",
+      "contact": "9580129995",
+      "course": "B.A.",
+      "major1": "English",
+      "major2": "Sociology",
+      "date": "2026-07-18"
+    },
+    {
       "registrationId": "262100048",
       "studentName": "Sandeep Gupta",
       "fatherName": "Sunil Kumar Gupta",
@@ -3904,6 +3970,83 @@
       "major1": "Chemistry",
       "major2": "Zoology",
       "date": "2026-07-16"
+    },
+    {
+      "registrationId": "262100289",
+      "studentName": "Saloni Mishra",
+      "fatherName": "Vishnu Kumar Mishra",
+      "email": "mishrasaloni9026@gmail.com",
+      "contact": "8182039139",
+      "course": "B.Sc.",
+      "major1": "Physics",
+      "major2": "Chemistry",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "262100300",
+      "studentName": "Salman Shakeel Ansari",
+      "fatherName": "Shakeel Ahmad Ansari",
+      "email": "salmanansari15290@gmail.com",
+      "contact": "9219427020",
+      "course": "B.Sc.",
+      "major1": "Zoology",
+      "major2": "Botany",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "262100298",
+      "studentName": "Richa Gupta",
+      "fatherName": "Ramsuchit Urf Sadlu",
+      "email": "ashishkumar9555969953@gmail.com",
+      "contact": "7459972619",
+      "course": "B.Sc.",
+      "major1": "Zoology",
+      "major2": "Chemistry",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "262100303",
+      "studentName": "Vivek Singh",
+      "fatherName": "Anil Singh",
+      "email": "viveksingh63643@gmail.com",
+      "contact": "8604419822",
+      "course": "B.Sc.",
+      "major1": "Zoology",
+      "major2": "Botany",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "262100295",
+      "studentName": "Rajveer Sahu",
+      "fatherName": "Binda Kumar Sahu",
+      "email": "rajveeersahu@gmail.com",
+      "contact": "8318565525",
+      "course": "B.Sc.",
+      "major1": "Chemistry",
+      "major2": "Mathematics",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "262100306",
+      "studentName": "Shweta Srivastava",
+      "fatherName": "Dhananjay Srivastava",
+      "email": "SRIVASTAVASHWETA24@GMAIL.COM",
+      "contact": "8858470814",
+      "course": "B.Sc.",
+      "major1": "Chemistry",
+      "major2": "Botany",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "262100307",
+      "studentName": "Alshifa Bano",
+      "fatherName": "Abdul Wahid",
+      "email": "BANOALSHIFA31@GMAIL.COM",
+      "contact": "9250073602",
+      "course": "B.Sc.",
+      "major1": "Zoology",
+      "major2": "Chemistry",
+      "date": "2026-07-18"
     },
     {
       "registrationId": "264100032",
@@ -5677,6 +5820,105 @@
       "date": "2026-07-16"
     },
     {
+      "registrationId": "264100267",
+      "studentName": "Saloni Kushwaha",
+      "fatherName": "Krapal Singh Kushwaha",
+      "email": "SALONIKUSHWAHA9336@GMAIL.COM",
+      "contact": "8172810166",
+      "course": "M.A.",
+      "major1": "History",
+      "major2": "",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "264100269",
+      "studentName": "Ansh Katiyar",
+      "fatherName": "Yatindra Kumar Katiyar",
+      "email": "ANSHKATIYAR1025@GMAIL.COM",
+      "contact": "9140892654",
+      "course": "M.A.",
+      "major1": "Political Sciences",
+      "major2": "",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "264100270",
+      "studentName": "Himanshu Upadhyay",
+      "fatherName": "Vinay Kumar Upadhyay",
+      "email": "pinku97929034@gmail.com",
+      "contact": "9554650475",
+      "course": "M.A.",
+      "major1": "Political Sciences",
+      "major2": "",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "264100271",
+      "studentName": "Anuradha Verma",
+      "fatherName": "Ravindra Nath Verma",
+      "email": "anuradha268.a@gmail.com",
+      "contact": "7499512136",
+      "course": "M.A.",
+      "major1": "Sociology",
+      "major2": "",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "264100274",
+      "studentName": "Siddharth Singh",
+      "fatherName": "Binda Singh",
+      "email": "sidssp11@gmail.com",
+      "contact": "7080089439",
+      "course": "M.A.",
+      "major1": "History",
+      "major2": "",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "264100273",
+      "studentName": "Udit Narayan",
+      "fatherName": "Dev Kumar Gautam",
+      "email": "UDIT9519@GMAIL.COM",
+      "contact": "8090602341",
+      "course": "M.A.",
+      "major1": "Sociology",
+      "major2": "",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "264100275",
+      "studentName": "Anamika Sharma",
+      "fatherName": "Rakesh Kumar Sharma",
+      "email": "anamikasharma1404@gmail.com",
+      "contact": "9335226210",
+      "course": "M.A.",
+      "major1": "Political Sciences",
+      "major2": "",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "264100276",
+      "studentName": "Shashi Tiwari",
+      "fatherName": "Umakant Tiwari",
+      "email": "shashitiwari0512knp@gmail.com",
+      "contact": "9651306931",
+      "course": "M.A.",
+      "major1": "Political Sciences",
+      "major2": "",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "264100277",
+      "studentName": "Ayushi Sharma",
+      "fatherName": "Rajesh Kumar Sharma",
+      "email": "AYUSHIKNP5626@GMAIL.COM",
+      "contact": "9336905626",
+      "course": "M.A.",
+      "major1": "Economics",
+      "major2": "",
+      "date": "2026-07-18"
+    },
+    {
       "registrationId": "262100035",
       "studentName": "Shivani Maurya",
       "fatherName": "Laxmi Narayan Maurya",
@@ -5878,7 +6120,7 @@
       "registrationId": "265100042",
       "studentName": "Aparna Tripathi",
       "fatherName": "Manish Tripathi",
-      "email": "aparnaaaa17@gmail.com",
+      "email": "aparnaaaaa17@gmail.com",
       "contact": "6307741927",
       "course": "M.Sc.",
       "major1": "Botany",
@@ -6566,6 +6808,72 @@
       "major1": "Zoology",
       "major2": "",
       "date": "2026-07-16"
+    },
+    {
+      "registrationId": "265100114",
+      "studentName": "Ushma Rajput",
+      "fatherName": "Shyam Sundar",
+      "email": "USHMARAJPUT45@GMAIL.COM",
+      "contact": "8543010194",
+      "course": "M.Sc.",
+      "major1": "Zoology",
+      "major2": "",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "265100134",
+      "studentName": "Jyoti Kamal",
+      "fatherName": "Devi Dayal Kamal",
+      "email": "jyotikamal587@gmail.com",
+      "contact": "7007685314",
+      "course": "M.Sc.",
+      "major1": "Zoology",
+      "major2": "",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "265100135",
+      "studentName": "Shivam Singh",
+      "fatherName": "Shiv Prakash Singh",
+      "email": "shivam8874kit@gmail.com",
+      "contact": "8299522292",
+      "course": "M.Sc.",
+      "major1": "Physics",
+      "major2": "",
+      "date": "2026-07-17"
+    },
+    {
+      "registrationId": "265100136",
+      "studentName": "Kajal Sharma",
+      "fatherName": "Lal Babu Sharma",
+      "email": "mohitawasthi07031992@gmail.com",
+      "contact": "7523850513",
+      "course": "M.Sc.",
+      "major1": "Zoology",
+      "major2": "",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "265100137",
+      "studentName": "Priti",
+      "fatherName": "Bhola Prasad",
+      "email": "palpriti929@gmail.com",
+      "contact": "8299794735",
+      "course": "M.Sc.",
+      "major1": "Zoology",
+      "major2": "",
+      "date": "2026-07-18"
+    },
+    {
+      "registrationId": "265100138",
+      "studentName": "Soni Devi Kushwaha",
+      "fatherName": "Chhangu Kushwaha",
+      "email": "rohitkumar78654177@gmail.com",
+      "contact": "7985239731",
+      "course": "M.Sc.",
+      "major1": "Chemistry",
+      "major2": "",
+      "date": "2026-07-18"
     }
   ]
 }
