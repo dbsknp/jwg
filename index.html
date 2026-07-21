@@ -85,17 +85,6 @@
             color: #302b63;
         }
 
-        .college-header .secretary-info {
-            margin-top: 6px;
-            font-size: 14px;
-            color: #444;
-            font-weight: 500;
-        }
-
-        .college-header .secretary-info strong {
-            color: #0f0c29;
-        }
-
         .college-header .header-icon {
             font-size: 32px;
             margin-bottom: 5px;
@@ -431,24 +420,6 @@
             border-radius: 2px;
         }
 
-        .json-box {
-            margin-top: 20px;
-            background: #0f0c29;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 12px;
-            overflow-x: auto;
-            font-size: 13px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .json-box pre {
-            margin: 0;
-            white-space: pre-wrap;
-            font-family: 'Courier New', monospace;
-        }
-
         .error-msg {
             color: #dc3545;
             font-size: 14px;
@@ -674,11 +645,6 @@
                     For all students • Free to join • Instant updates
                 </div>
             </div>
-
-            <div class="json-box">
-                <strong style="color: #f8f8f2;">📄 Generated JSON Data</strong>
-                <pre id="jsonOutput"></pre>
-            </div>
         </div>
 
         <!-- ===== FOOTER ===== -->
@@ -859,7 +825,7 @@
             }
 
             // =====================================================
-            // 🔑 UPDATED: Mobile Number Mismatch Error with Contact
+            // 🔑 Mobile Number Mismatch Error with Contact
             // =====================================================
             if (student.contact !== mobileNumber) {
                 errorMsg.innerHTML = `
@@ -882,33 +848,8 @@
 
             const groups = getWhatsAppGroups(student);
 
-            const jsonData = {
-                student: {
-                    registrationId: registrationId,
-                    mobileNumber: mobileNumber,
-                    studentName: student.studentName,
-                    fatherName: student.fatherName,
-                    course: student.course,
-                    major1: student.major1,
-                    major2: student.major2 || '',
-                    date: student.date
-                },
-                whatsappGroups: groups.map(g => ({
-                    type: g.type,
-                    subject: g.subject,
-                    course: g.course,
-                    link: g.link
-                })),
-                commonChannel: {
-                    name: "DBS PG College Official WhatsApp Channel",
-                    link: "https://whatsapp.com/channel/0029VbCy0dKBadmTuAMdvc3E"
-                },
-                timestamp: new Date().toISOString()
-            };
-
             displayStudentDetails(student, registrationId, mobileNumber);
             displayWhatsAppLinks(groups);
-            document.getElementById('jsonOutput').textContent = JSON.stringify(jsonData, null, 2);
             
             resultBox.classList.add('show');
             resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
