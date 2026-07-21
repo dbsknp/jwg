@@ -27,7 +27,6 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
-        /* ===== HEADER SECTION - PROFESSIONAL COLLEGE STYLE ===== */
         .college-header {
             text-align: center;
             border-bottom: 3px solid #302b63;
@@ -90,7 +89,6 @@
             margin-bottom: 5px;
         }
 
-        /* ===== MAIN TITLE ===== */
         .main-title {
             text-align: center;
             color: #0f0c29;
@@ -327,7 +325,6 @@
             border-radius: 15px;
         }
 
-        /* ===== COMMON WHATSAPP CHANNEL SECTION ===== */
         .common-channel-section {
             margin-top: 25px;
             padding: 20px;
@@ -517,7 +514,6 @@
             display: block;
         }
 
-        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             margin-top: 25px;
@@ -573,7 +569,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- ===== PROFESSIONAL COLLEGE HEADER ===== -->
         <div class="college-header">
             <div class="header-icon">🏛️</div>
             <div class="college-name">DBS PG College <span>Govind Nagar</span></div>
@@ -588,7 +583,6 @@
             </div>
         </div>
 
-        <!-- ===== MAIN CONTENT ===== -->
         <h1 class="main-title">🎓 Student WhatsApp Group Joining System</h1>
         <p class="subtitle">B.A. | B.Sc. | M.A. | M.Sc. — Find your WhatsApp Groups</p>
         
@@ -601,7 +595,7 @@
             <div class="row">
                 <div class="form-group">
                     <label>Registration ID <span class="required">*</span></label>
-                    <input type="text" id="registrationId" placeholder="e.g., 261100028" required>
+                    <input type="text" id="registrationId" placeholder="e.g., 261200010" required>
                     <div id="studentFoundMsg" class="student-found-msg"></div>
                 </div>
                 <div class="form-group">
@@ -624,7 +618,6 @@
                 <div id="whatsappLinks" class="whatsapp-grid"></div>
             </div>
 
-            <!-- ===== COMMON WHATSAPP CHANNEL LINK (FOR EVERYONE) ===== -->
             <div class="common-channel-section">
                 <div class="channel-title">
                     <span class="whatsapp-icon">📱</span>
@@ -647,7 +640,6 @@
             </div>
         </div>
 
-        <!-- ===== FOOTER ===== -->
         <div class="footer">
             &copy; 2026 DBS PG College, Govind Nagar, Kanpur | All Rights Reserved
         </div>
@@ -660,30 +652,70 @@
         let STUDENT_DB = {};
         let WHATSAPP_LINKS = {};
 
+        // =====================================================
+        // 🔑 SUBJECT MAPPING - Normalize subject names
+        // =====================================================
+        function normalizeSubject(subject) {
+            if (!subject) return '';
+            
+            let normalized = subject.toLowerCase().trim();
+            normalized = normalized.replace(/\s+/g, ' ');
+            
+            const subjectMap = {
+                'political science': 'political sciences',
+                'political sciences': 'political sciences',
+                'pol science': 'political sciences',
+                'politics': 'political sciences',
+                'math': 'mathematics',
+                'maths': 'mathematics',
+                'mathematics': 'mathematics',
+                'physics': 'physics',
+                'chemistry': 'chemistry',
+                'biology': 'biology',
+                'zoology': 'zoology',
+                'botany': 'botany',
+                'english': 'english',
+                'hindi': 'hindi',
+                'urdu': 'urdu',
+                'sanskrit': 'sanskrit',
+                'history': 'history',
+                'geography': 'geography',
+                'economics': 'economics',
+                'sociology': 'sociology',
+                'psychology': 'psychology',
+                'philosophy': 'philosophy',
+                'commerce': 'commerce',
+                'accountancy': 'accountancy',
+                'business studies': 'business studies',
+                'computer science': 'computer science',
+                'computer': 'computer science',
+                'it': 'computer science',
+                'information technology': 'computer science'
+            };
+            
+            return subjectMap[normalized] || normalized;
+        }
+
         async function loadJSONData() {
             try {
-                // Load students.json
                 const studentsResponse = await fetch('students.json');
                 if (!studentsResponse.ok) {
                     throw new Error('students.json file not found!');
                 }
                 const studentsData = await studentsResponse.json();
                 
-                // Convert array to object with registrationId as key
                 if (studentsData.students && Array.isArray(studentsData.students)) {
                     studentsData.students.forEach(student => {
                         STUDENT_DB[student.registrationId] = student;
                     });
                 }
 
-                // Load whatsapp-groups.json
                 const groupsResponse = await fetch('whatsapp-groups.json');
                 if (!groupsResponse.ok) {
                     throw new Error('whatsapp-groups.json file not found!');
                 }
                 WHATSAPP_LINKS = await groupsResponse.json();
 
-                // Hide loading, show form
                 document.getElementById('loadingMsg').style.display = 'none';
                 document.getElementById('studentForm').style.display = 'block';
                 
@@ -700,7 +732,6 @@
             }
         }
 
-        // Load data on page load
         loadJSONData();
 
         // =====================================================
@@ -709,8 +740,8 @@
         function getWhatsAppGroups(student) {
             const groups = [];
             const course = student.course;
-            const major1 = student.major1;
-            const major2 = student.major2;
+            const isUG = course === 'B.A.' || course === 'B.Sc.';
+            const isPG = course === 'M.A.' || course === 'M.Sc.';
 
             const courseGroups = WHATSAPP_LINKS.whatsappGroups ? WHATSAPP_LINKS.whatsappGroups[course] : null;
             
@@ -718,26 +749,77 @@
                 return groups;
             }
 
-            if (major1) {
-                const link = courseGroups[major1] || '';
-                groups.push({
-                    type: 'Major Subject',
-                    subject: major1,
-                    course: course,
-                    link: link,
-                    hasLink: link !== ''
-                });
+            // Helper function to find link for a subject
+            function findLink(subject) {
+                if (!subject) return '';
+                const normalized = normalizeSubject(subject);
+                let link = courseGroups[normalized] || '';
+                
+                if (!link) {
+                    for (let key in courseGroups) {
+                        if (normalizeSubject(key) === normalized) {
+                            link = courseGroups[key];
+                            break;
+                        }
+                    }
+                }
+                return link;
             }
 
-            if ((course === 'B.A.' || course === 'B.Sc.') && major2 && major2.trim() !== '') {
-                const link = courseGroups[major2] || '';
-                groups.push({
-                    type: 'Second Major',
-                    subject: major2,
-                    course: course,
-                    link: link,
-                    hasLink: link !== ''
-                });
+            if (isUG) {
+                // GRADUATION: 2 Major + 1 Minor
+                
+                // Major 1
+                if (student.major1) {
+                    const link = findLink(student.major1);
+                    groups.push({
+                        type: 'Major 1',
+                        subject: student.major1,
+                        course: course,
+                        link: link,
+                        hasLink: link !== ''
+                    });
+                }
+
+                // Major 2
+                if (student.major2 && student.major2.trim() !== '') {
+                    const link = findLink(student.major2);
+                    groups.push({
+                        type: 'Major 2',
+                        subject: student.major2,
+                        course: course,
+                        link: link,
+                        hasLink: link !== ''
+                    });
+                }
+
+                // Minor
+                if (student.minor && student.minor.trim() !== '') {
+                    const link = findLink(student.minor);
+                    groups.push({
+                        type: 'Minor',
+                        subject: student.minor,
+                        course: course,
+                        link: link,
+                        hasLink: link !== ''
+                    });
+                }
+            } 
+            else if (isPG) {
+                // PG: Sirf Main Subject - Koi Minor Nahi
+                
+                // Main Subject (Major 1)
+                if (student.major1) {
+                    const link = findLink(student.major1);
+                    groups.push({
+                        type: 'Main Subject',
+                        subject: student.major1,
+                        course: course,
+                        link: link,
+                        hasLink: link !== ''
+                    });
+                }
+                // PG mein major2 aur minor ko IGNORE karo
             }
 
             return groups;
@@ -773,9 +855,6 @@
         document.getElementById('registrationId').addEventListener('input', function() {
             const foundMsg = document.getElementById('studentFoundMsg');
             foundMsg.classList.remove('show');
-            foundMsg.style.color = '#28a745';
-            foundMsg.style.background = '#e8f5e9';
-            foundMsg.style.borderLeftColor = '#28a745';
         });
 
         // =====================================================
@@ -798,7 +877,7 @@
             if (!registrationId || !mobileNumber) {
                 errorMsg.innerHTML = `
                     <div class="error-title">⚠️ Missing Information</div>
-                    <div class="error-details">Registration ID and Mobile Number are required fields. Please fill in both fields to proceed.</div>
+                    <div class="error-details">Registration ID and Mobile Number are required fields.</div>
                 `;
                 errorMsg.classList.add('show');
                 return;
@@ -807,7 +886,7 @@
             if (!/^\d{10}$/.test(mobileNumber)) {
                 errorMsg.innerHTML = `
                     <div class="error-title">⚠️ Invalid Mobile Number</div>
-                    <div class="error-details">Please enter a valid 10-digit mobile number. The number you entered contains ${mobileNumber.length} digits.</div>
+                    <div class="error-details">Please enter a valid 10-digit mobile number.</div>
                 `;
                 errorMsg.classList.add('show');
                 return;
@@ -818,20 +897,17 @@
             if (!student) {
                 errorMsg.innerHTML = `
                     <div class="error-title">❌ Student Not Found</div>
-                    <div class="error-details">No student record exists with Registration ID: <strong>${registrationId}</strong>. Please check the ID and try again.</div>
+                    <div class="error-details">No student record exists with Registration ID: <strong>${registrationId}</strong>.</div>
                 `;
                 errorMsg.classList.add('show');
                 return;
             }
 
-            // =====================================================
-            // 🔑 Mobile Number Mismatch Error with Contact
-            // =====================================================
             if (student.contact !== mobileNumber) {
                 errorMsg.innerHTML = `
                     <div class="error-title">❌ Mobile Number Mismatch</div>
                     <div class="error-details">
-                        The mobile number <strong>${mobileNumber}</strong> does not match our records for Registration ID: <strong>${registrationId}</strong>.
+                        The mobile number <strong>${mobileNumber}</strong> does not match our records.
                         <br><br>
                         <strong>For assistance, please contact:</strong><br>
                         Lt. (Dr.) Ajay Kumar<br>
@@ -866,11 +942,7 @@
                 '<span class="course-badge course-ug">UG</span>' : 
                 '<span class="course-badge course-pg">PG</span>';
 
-            const major2Display = (isUG && student.major2 && student.major2.trim() !== '') 
-                ? student.major2 
-                : 'None';
-
-            card.innerHTML = `
+            let html = `
                 <h3>
                     👤 Student Details 
                     ${courseBadge}
@@ -895,19 +967,43 @@
                     <strong>Course:</strong>
                     <span>${student.course}</span>
                 </div>
-                <div class="detail-row">
-                    <strong>Major 1:</strong>
-                    <span>${student.major1}</span>
-                </div>
-                <div class="detail-row">
-                    <strong>Major 2:</strong>
-                    <span>${major2Display}</span>
-                </div>
+            `;
+
+            if (isUG) {
+                // Graduation: 2 Majors + 1 Minor
+                html += `
+                    <div class="detail-row">
+                        <strong>Major 1:</strong>
+                        <span>${student.major1 || 'N/A'}</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Major 2:</strong>
+                        <span>${student.major2 || 'N/A'}</span>
+                    </div>
+                    <div class="detail-row">
+                        <strong>Minor:</strong>
+                        <span>${student.minor || 'N/A'}</span>
+                    </div>
+                `;
+            } else {
+                // PG: Sirf Main Subject (Koi Minor Nahi)
+                html += `
+                    <div class="detail-row">
+                        <strong>Main Subject:</strong>
+                        <span>${student.major1 || 'N/A'}</span>
+                    </div>
+                `;
+                // PG mein major2 aur minor ko DISPLAY mat karo
+            }
+
+            html += `
                 <div class="detail-row">
                     <strong>Registration Date:</strong>
-                    <span>${student.date}</span>
+                    <span>${student.date || 'N/A'}</span>
                 </div>
             `;
+
+            card.innerHTML = html;
         }
 
         function displayWhatsAppLinks(groups) {
