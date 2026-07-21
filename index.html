@@ -523,6 +523,16 @@
             color: #999;
         }
 
+        .coming-soon-text {
+            color: #f57c00;
+            font-weight: 600;
+            font-size: 13px;
+            background: #fff3e0;
+            padding: 2px 12px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
         @media (max-width: 768px) {
             .row {
                 grid-template-columns: 1fr;
@@ -769,7 +779,7 @@
             if (isUG) {
                 // GRADUATION: 2 Major + 1 Minor
                 
-                // Major 1
+                // Major 1 - always show
                 if (student.major1) {
                     const link = findLink(student.major1);
                     groups.push({
@@ -781,7 +791,7 @@
                     });
                 }
 
-                // Major 2
+                // Major 2 - always show (even if empty)
                 if (student.major2 && student.major2.trim() !== '') {
                     const link = findLink(student.major2);
                     groups.push({
@@ -791,9 +801,19 @@
                         link: link,
                         hasLink: link !== ''
                     });
+                } else {
+                    // If no Major 2, show "Coming Soon"
+                    groups.push({
+                        type: 'Major 2',
+                        subject: 'Coming Soon',
+                        course: course,
+                        link: '',
+                        hasLink: false,
+                        isComingSoon: true
+                    });
                 }
 
-                // Minor
+                // Minor - if exists show, else show "Coming Soon"
                 if (student.minor && student.minor.trim() !== '') {
                     const link = findLink(student.minor);
                     groups.push({
@@ -802,6 +822,16 @@
                         course: course,
                         link: link,
                         hasLink: link !== ''
+                    });
+                } else {
+                    // If no Minor, show "Coming Soon"
+                    groups.push({
+                        type: 'Minor',
+                        subject: 'Coming Soon',
+                        course: course,
+                        link: '',
+                        hasLink: false,
+                        isComingSoon: true
                     });
                 }
             } 
@@ -978,11 +1008,11 @@
                     </div>
                     <div class="detail-row">
                         <strong>Major 2:</strong>
-                        <span>${student.major2 || 'N/A'}</span>
+                        <span>${student.major2 && student.major2.trim() !== '' ? student.major2 : '<span class="coming-soon-text">Coming Soon</span>'}</span>
                     </div>
                     <div class="detail-row">
                         <strong>Minor:</strong>
-                        <span>${student.minor || 'N/A'}</span>
+                        <span>${student.minor && student.minor.trim() !== '' ? student.minor : '<span class="coming-soon-text">Coming Soon</span>'}</span>
                     </div>
                 `;
             } else {
@@ -1020,6 +1050,19 @@
             }
 
             container.innerHTML = groups.map(group => {
+                // Check if it's a "Coming Soon" placeholder
+                if (group.isComingSoon) {
+                    return `
+                        <div class="whatsapp-item no-link">
+                            <div class="group-info">
+                                <span class="group-name">${group.subject}</span>
+                                <span class="group-type">${group.type} • ${group.course}</span>
+                            </div>
+                            <span class="no-link-badge">🔜 Coming Soon</span>
+                        </div>
+                    `;
+                }
+                
                 if (group.hasLink && group.link) {
                     return `
                         <div class="whatsapp-item">
